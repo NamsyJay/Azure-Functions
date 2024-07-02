@@ -31,13 +31,39 @@ In the terminal window or from a command prompt, run the following command to cr
 We will be writing Our First HTTP Function 
 1) Navigate to the function_app.py
 
-@app.function_name("FirtsHTTPFunction')
+@app.function_name(name="FirstHTTPFunction")
 @app.route(route="myroute", auth_level=func.AuthLevel.ANONYMOUS)
-def test_function(req: func.HttpRequest) -> func.HTTPResponse:
+def test_function(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
-    return func.HTTPResponse(
-        "Congratulations On Your First HTTP Request JIDE",
+    return func.HttpResponse(
+        "Wow this first HTTP Function works!!!!",
         status_code=200
     )
-2)
-3)
+Note: I had an error and I fixed it; `@func.function_name('FirstHTTPFunction')`
+Here is the solution
+The correct way to define an HTTP-triggered function in Azure Functions involves using FunctionApp to decorate the function.
+Here is how you should define your function:
+
+I) Import necessary modules.
+II) Create a FunctionApp instance.
+III) Use @app.function_name(name="FunctionName") and @app.route(route="Route", auth_level=func.AuthLevel.ANONYMOUS) decorators.
+
+## 2) The Second HTTP Function
+
+@app.function_name(name="SecondHTTPFunction")
+@app.route(route="newroute", auth_level=func.AuthLevel.ANONYMOUS)
+def test_function(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Starting The Second HTTP Function Request.')
+    
+    name = req.params.get('name')
+    if name:
+        message = f"Hello, {name}, This Function Worked!"
+    else:
+        message = "Hello, World! This Function Worked!"
+    return func.HttpResponse(
+        status_code=200
+    )
+
+- Copy the link and paste in the browser
+- NOTE: add "?name=`any-name`" in the tab.
+3) Installing Azurite on your Local Machine
