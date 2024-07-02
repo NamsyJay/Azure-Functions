@@ -1,0 +1,43 @@
+### Installation
+
+Azure Functions Core Tools lets you develop and test your functions on your local computer. When you're ready, you can also use Core Tools to deploy your code project to Azure and work with application settings.
+
+## STEP 1: Install the Azure Functions Core Tools
+Download and run the Core Tools installer, based on your version of Windows:
+https://go.microsoft.com/fwlink/?linkid=21740
+
+## STEP 2: Create your local project & Setup
+In the terminal window or from a command prompt, run the following command to create a project in the MyProjFolder folder:
+1) func init AsdaFunctionProject --python --m V2 
+2) cd into the project folder.
+3) Create a virtual environment.
+  - python -m venv .venv
+4) Activate the Virtual Environment.
+  - ./.venv/scripts/activate.ps1
+5) pip list (Update the pip if required)
+6) Note: Settings to encrypt in AzureWebJobsStorage
+  - Add `func settings add "MyNewConn" "12345"` for instance.
+  - This will update the file; this can be used to add key pairs or values.
+  - To Encrypt information, change the `"IsEncrypted": false,` to "true", then input the values.
+  - Input values and notice the encryption.
+7) Install Requirements
+  - This will install the Python packages needed.
+8) Activating The Virtual Environment Interpreter
+  - Navigate to the venv\Scripts\python.exe and copy the path.
+  - C:\Users\onamu\Python-Lessons\Azurefunctions\AsdaFunctionProject\.venv\Scripts\python.exe
+  - enter the Python interpreter path and you will see ("venv":venv)
+
+## STEP 3: Create a function
+We will be writing Our First HTTP Function 
+1) Navigate to the function_app.py
+
+@app.function_name("FirtsHTTPFunction')
+@app.route(route="myroute", auth_level=func.AuthLevel.ANONYMOUS)
+def test_function(req: func.HttpRequest) -> func.HTTPResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+    return func.HTTPResponse(
+        "Congratulations On Your First HTTP Request JIDE",
+        status_code=200
+    )
+2)
+3)
