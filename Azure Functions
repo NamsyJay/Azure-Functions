@@ -64,6 +64,34 @@ def test_function(req: func.HttpRequest) -> func.HttpResponse:
         status_code=200
     )
 
-- Copy the link and paste in the browser
+- Copy the link and paste it into the browser
 - NOTE: add "?name=`any-name`" in the tab.
-3) Installing Azurite on your Local Machine
+3) Add Additional Functions
+  - create folder 
+  - Add function:
+** Include as libraries in function_app.py ** 
+from http.client import HTTPResponse
+import azure.functions as func
+import datetime
+import json
+import logging
+from additional_functions import bp 
+
+app = func.FunctionApp()
+
+app.register_blueprint(bp)
+  - additional_functions.py
+import logging
+import azure.functions as func
+
+bp = func.Blueprint()
+
+
+@bp.function_name(name="AdditionalHTTPFunction")
+@bp.route(route="latestroute", auth_level=func.AuthLevel.ANONYMOUS)
+def test_function(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+    return func.HttpResponse(
+        "Well, This Worked!!",
+        status_code=200
+    )
