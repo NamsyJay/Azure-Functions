@@ -13,7 +13,8 @@ In the terminal window or from a command prompt, run the following command to cr
 3) Create a virtual environment.
   - python -m venv .venv
 4) Activate the Virtual Environment.
-  - ./.venv/scripts/activate.ps1
+  - ./.venv/scripts/activate.ps1 (Powershell)
+  - python -m venv venv (Bash)
 5) pip list (Update the pip if required)
 6) Note: Settings to encrypt in AzureWebJobsStorage
   - Add `func settings add "MyNewConn" "12345"` for instance.
